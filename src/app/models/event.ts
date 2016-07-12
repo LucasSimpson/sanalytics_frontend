@@ -13,4 +13,8 @@ export class Event {
     this.user = user;
     this.jsonData = jsonData;
   }
+
+  public static fromJson(json):Event {
+    return new Event(json.category, json.user, json.json_data);
+  }
 }

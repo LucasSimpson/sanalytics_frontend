@@ -5,6 +5,7 @@ import {Home} from './components/home/home';
 import {RepoBrowser} from './components/repo-browser/repo-browser';
 import {RepoList} from './components/repo-list/repo-list';
 import {RepoDetail} from './components/repo-detail/repo-detail';
+import {EventList} from './components/event-list/event-list';
 
 const routes: RouterConfig = [
   { path: '', redirectTo: 'home', terminal: true },
@@ -16,7 +17,8 @@ const routes: RouterConfig = [
       { path: '', component: RepoDetail }
     ]},
     { path: '', component: RepoList}
-  ]}
+  ]},
+  { path: 'event-list', component: EventList }
 ];
 
 export const APP_ROUTER_PROVIDERS = [

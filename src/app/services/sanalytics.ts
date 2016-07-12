@@ -9,11 +9,12 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class Sanalytics {
-  private static ENDPOINT: string = 'http://localhost:8000/ingest/';
+  private static ENDPOINT:string = 'http://localhost:8000/ingest/';
 
-  constructor(private http: Http) {}
+  constructor(private http:Http) {
+  }
 
-  postEvent(authToken: string, eventCategory: string, eventUser: string, jsonData: string): Observable<Event> {
+  postEvent(authToken:string, eventCategory:string, eventUser:string, jsonData:string):Observable<Event> {
     let url = Sanalytics.ENDPOINT;
     let body = {
       auth_token: authToken,
@@ -22,20 +23,37 @@ export class Sanalytics {
       json_data: jsonData
     };
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
 
     return this.http.post(url, body, options)
-      .map(this.parseResponse)
+      .map(this.eventFromResponse)
       .catch(this.handleError);
   }
 
-  private parseResponse(res: Response) {
-    let result = res.json().result;
-    return new Event(result.category, result.user, result.json_data);
+  getAllEvents(authToken:string):Observable<Event[]> {
+    let url = Sanalytics.ENDPOINT;
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.get(url, options)
+      .map(this.eventListFromResponse)
+      .catch(this.handleError);
   }
 
-  private handleError (error: any) {
+  private eventFromResponse(res:Response) {
+    let result = res.json().result;
+    return Event.fromJson(result);
+  }
+
+  private eventListFromResponse(res:Response):Event[] {
+    let result = res.json().results;
+    return result.map((eventJson) => {
+      return Event.fromJson(eventJson);
+    });
+  }
+
+  private handleError(error:any) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
     let errMsg = (error.message) ? error.message :
@@ -43,5 +61,4 @@ export class Sanalytics {
     console.error(errMsg); // log to console instead
     return Observable.throw(errMsg);
   }
-
 }

@@ -1,0 +1,7 @@
+
+<div *ngIf="events">
+  <event-detail *ngFor="let event of events" [event]="event"></event-detail>
+</div>
+<div *ngIf="!events">
+  <h1>Loading...</h1>
+</div>
