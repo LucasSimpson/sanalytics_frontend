@@ -1,29 +1,31 @@
-<h3>
-  Sanalytics
-</h3>
-<nav>
-	<a [routerLink]="['/']">
-    Home
-  </a>
-  |
-	<a [routerLink]="['/about']">
-    About
-  </a>
-  |
-	<a [routerLink]="['/github', 'angular']">
-    Github Repos
-  </a>
-  |
-  <a [routerLink]="['/event-list']">
-    Event List
-  </a>
-</nav>
+<div class="container">
+  <h3>
+    Sanalytics
+  </h3>
+  <nav>
+    <a [routerLink]="['/']">
+      Home
+    </a>
+    |
+    <a [routerLink]="['/about']">
+      About
+    </a>
+    |
+    <a [routerLink]="['/github', 'angular']">
+      Github Repos
+    </a>
+    |
+    <a [routerLink]="['/event-list']">
+      Event List
+    </a>
+  </nav>
 
-<main>
-	<router-outlet></router-outlet>
-</main>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 
 
-<footer>
-  © 2016
-</footer>
+  <footer>
+    © 2016
+  </footer>
+</div>

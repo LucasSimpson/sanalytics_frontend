@@ -1,2 +1,13 @@
 
-<p *ngIf="event">Category: {{event.category}} User: {{event.user}} Json Date: {{event.jsonData}}</p>
+
+<div class="row event-detail" *ngIf="event">
+  <div class="col-sm-2 event-user">
+    <p>{{ event.user }}</p>
+  </div>
+  <div class="col-sm-3 event-category">
+    <p>{{ event.category }}</p>
+  </div>
+  <div class="col-sm-7 event-jsonData">
+    <p>{{ event.jsonData }}</p>
+  </div>
+</div>

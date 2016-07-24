@@ -1,0 +1,20 @@
+.event-detail {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.event-detail p {
+  margin: 0;
+}
+
+.event-detail .event-user {
+  background-color: #F44336;
+}
+
+ .event-detail .event-category {
+  background-color: #673AB7;
+}
+
+ .event-detail .event-jsonData {
+  background-color: #2196F3;
+}
